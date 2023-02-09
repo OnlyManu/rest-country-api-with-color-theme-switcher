@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 2rem 1rem;
+    background-color: var(--var-bg-color-secondary);
+    box-shadow: 0px 0px 12px var(--var-shadow-color);
+}
+.title_app {
+    font-weight: 700;
+}
+.btn_theme {
+    display: flex;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 300;
+    background-color: transparent;
+    border: none;
+    color: var(--var-text-color-primary);
+}

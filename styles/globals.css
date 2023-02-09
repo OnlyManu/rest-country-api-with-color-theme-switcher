@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
+
+:root {
+  --var-color-dark-blue: hsl(209, 23%, 22%);
+  --var-color-very-dark: hsl(207, 26%, 17%);
+  --var-color-very-dark-blue: hsl(200, 15%, 8%);
+  --var-color-dark-gray: hsl(0, 0%, 52%);
+  --var-color-very-light-gray: hsl(0, 0%, 98%);
+  --var-color-white: hsl(0, 0%, 100%);
+
+  --var-bg-color-primary: hsl(0, 0%, 98%);
+  --var-bg-color-secondary: hsl(0, 0%, 100%);
+  --var-text-color-primary: hsl(200, 15%, 8%);
+  --var-text-color-secondary: hsl(0, 0%, 52%);
+  --var-shadow-color: hsla(200, 15%, 8%, 0.05);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 14px;
+}
+
+.light {
+  --var-bg-color-primary: hsl(0, 0%, 98%);;
+  --var-bg-color-secondary: hsl(0, 0%, 100%);
+  --var-text-color-primary: hsl(200, 15%, 8%);
+  --var-text-color-secondary: hsl(0, 0%, 52%);
+}
+.dark {
+  --var-bg-color-primary: hsl(207, 26%, 17%);
+  --var-bg-color-secondary: hsl(209, 23%, 22%);
+  --var-text-color-primary: hsl(0, 0%, 100%);
+  --var-text-color-secondary: hsl(0, 0%, 98%);
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: black;
+  }
+}
