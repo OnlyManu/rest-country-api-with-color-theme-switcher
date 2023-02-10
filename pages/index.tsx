@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { useReducer } from 'react'
 import { useTheme } from '../lib/themecontext'
 import styles from '../styles/Home.module.css'
 
@@ -8,14 +9,80 @@ import Navbar from '../components/navbar/navbar'
 import InputSearch from '../components/input-search/input-search'
 import SelectRegion from '../components/select-region/select-region'
 
+type ActionType = {type: "filter_by_name", payload: string} | {type: "filter_by_region", payload: string}
+
+let initialListCountries: any = [];
+(async function () {
+  const response = await getCountries();
+  
+  if (response.status == "sucess") {
+    initialListCountries = response.data
+  } else {
+    console.log(response.message)  
+  }
+})()
+
+const initialState = {
+  name_filter: "",
+  region_filter: "",
+  regions: initialListCountries 
+}
+
+function reducer(state: typeof initialState, action: ActionType) {
+  switch (action.type) {
+    case "filter_by_name": {
+      const name_filter = action.payload
+      const regions = state.regions.filter((region: any) => {
+        const reg = new RegExp(`${name_filter}`, "i")
+        return reg.test(region.name)
+      })
+
+      return {...state, name_filter, regions}
+    }
+    case "filter_by_region": {
+      const region_filter = action.payload
+      if (state.region_filter === region_filter) {
+        return state
+      }
+
+      let regions
+      if (region_filter === "") {
+        regions = initialListCountries
+      } else {
+        regions = state.regions.filter((region: any) => {
+          const reg = new RegExp(`${region_filter}`, "i")
+          return reg.test(region.region)
+        })
+      }
+
+      return {...state, region_filter, regions}
+    }
+    default: {
+      throw new Error()
+    }
+  }
+}
+
 export default function Home() {
   const { theme } = useTheme()
-  const test = async () => {
-    const response = await getCountries();
-    console.log(response)
+  const [state, dispatch] = useReducer(reducer, initialState)
+  
+  const fiterByRegion = (region: string): void => {
+    dispatch({ type: "filter_by_region", payload: region })
+    if (state.name_filter !== "") {
+      filterByName(state.name_filter)
+    }
   }
 
-  test()
+  const filterByName = (name: string): void => {
+    if (name === "") {
+      dispatch({type: "filter_by_region", payload: state.region_filter})
+    } else {
+      dispatch({type: "filter_by_name", payload: name})
+    }
+  }
+  
+
   return (
     <div className={styles.container+" "+theme}>
       <Head>
