@@ -1,21 +1,25 @@
-interface Iresponse {
-    status: "sucess" | "error",
-    data?: Array<Iregion>,
-    message?: string
-}
-interface Iregion {
+export interface Icountry {
     name: string,
-    population: number,
+    population: string,
     region: string,
     capital: string[],
+    flags: string
+}
+interface Iresponse {
+    status: "sucess" | "error",
+    data?: Array<Icountry>,
+    message?: string
 }
 
-const formatToIregion = (obj: any): Iregion => {
-    let region: Iregion = {
+export type CountriesType = undefined | Array<Icountry>
+
+const formatToIregion = (obj: any): Icountry => {
+    let region: Icountry = {
         name: obj.name.official,
-        population: obj.population,
+        population: obj.population.toLocaleString("en-US"),
         region: obj.region,
-        capital: obj.capital
+        capital: obj.capital,
+        flags: obj.flags.png
     } 
     return region
 }
