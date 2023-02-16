@@ -7,7 +7,7 @@ import utils from "../../styles/utils.module.css"
 
 interface IselectRegionProps {
     onClick: (param: RegionType) => void,
-    initialRegion: RegionType
+    initialValue: RegionType
 }
 interface Iregion {
     name: RegionType,
@@ -29,9 +29,9 @@ const capitalise = (word: string): string => {
     return word
 }
 
-export default function SelectRegion({onClick, initialRegion}: IselectRegionProps) {
+export default function SelectRegion({onClick, initialValue}: IselectRegionProps) {
     const [isOpen, setIsOpen] = useState<boolean>(false)
-    const [selectedRegion, setSelectedRegion] = useState<RegionType>(initialRegion)
+    const [selectedRegion, setSelectedRegion] = useState<RegionType>(initialValue)
 
     const openClose = (): void => {
         setIsOpen(!isOpen)

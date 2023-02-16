@@ -86,7 +86,7 @@ function reducer(state: typeof initialState, action: ActionType) {
   }
 }
 
-export default function Home({themeSelected}: InferGetServerSidePropsType<typeof getCountries>) {
+export default function Home({themeSelected}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { theme, setTheme } = useTheme()
   const [state, dispatch] = useReducer(reducer, initialState)
   const [loadingState, setLoaddingState] = useState<boolean>(true)

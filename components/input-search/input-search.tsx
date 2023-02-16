@@ -6,11 +6,11 @@ import utils from "../../styles/utils.module.css"
 
 interface InputSearchProps {
     onChange: (param: string) => void,
-    initialSearch: string
+    initialValue: string
 }
 
-export default function InputSearch({onChange, initialSearch} : InputSearchProps) {
-    const [search, setSearch] = useState<string>(initialSearch)
+export default function InputSearch({onChange, initialValue}: InputSearchProps) {
+    const [search, setSearch] = useState<string>(initialValue)
     const handleChange = (event: FormEvent<HTMLInputElement>): void => {
         const value: string = event.currentTarget.value;
         setSearch(value)
