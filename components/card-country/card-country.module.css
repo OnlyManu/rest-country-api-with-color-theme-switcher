@@ -6,7 +6,7 @@
 }
 .flag_wrapper {
     width: 100%;
-    height: 160px;
+    height: 42vw;
 }
 .flag {
     width: 100%;
@@ -18,7 +18,7 @@
     flex-direction: column;
     gap: 1.5rem;
     padding: 1.5rem 1.5rem 0 1.5rem;
-    height: 12.5rem;
+    height: 13rem;
     width: 100%;
 }
 

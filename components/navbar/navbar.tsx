@@ -1,4 +1,5 @@
 import { useTheme } from "../../lib/themecontext"
+import { setThemePreference } from "../../lib/preferences"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMoon as dark }  from "@fortawesome/free-solid-svg-icons"
 import { faMoon as light} from "@fortawesome/free-regular-svg-icons"
@@ -9,6 +10,7 @@ export default function Navbar() {
     const { theme, setTheme } = useTheme()
     const toggleTheme = (): void => {
         setTheme(theme === "light" ? "dark" : "light")
+        setThemePreference(theme === "light" ? "dark" : "light")
     }
 
     return (

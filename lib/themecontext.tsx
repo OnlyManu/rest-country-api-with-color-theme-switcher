@@ -8,8 +8,9 @@ interface IthemeContext {
     setTheme: DispatchThemeType
 }
 
-interface Iprops {
-    children: React.ReactNode
+interface IthemeProviderProps {
+    children: React.ReactNode,
+    initialTheme: ThemeType
 } 
 
 export const ThemeContext = React.createContext<IthemeContext>({
@@ -19,12 +20,11 @@ export const ThemeContext = React.createContext<IthemeContext>({
 
 export const useTheme = ():IthemeContext => useContext(ThemeContext)
 
-export const ThemeProvider= ({ children }:Iprops) => {
-    const [theme, setTheme] = useState<ThemeType>("light")
+export const ThemeProvider= ({ children, initialTheme }: IthemeProviderProps) => {
+    const [theme, setTheme] = useState<ThemeType>(initialTheme)
     return (
         <ThemeContext.Provider value={{ theme, setTheme }}>
             {children}
         </ThemeContext.Provider>
     )
 }
-

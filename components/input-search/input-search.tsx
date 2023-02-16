@@ -1,13 +1,35 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
+import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons"
+import { FormEvent, useState } from "react"
 import styles from "./input-search.module.css"
 import utils from "../../styles/utils.module.css"
 
-export default function InputSearch() {
+interface InputSearchProps {
+    onChange: (param: string) => void,
+    initialSearch: string
+}
+
+export default function InputSearch({onChange, initialSearch} : InputSearchProps) {
+    const [search, setSearch] = useState<string>(initialSearch)
+    const handleChange = (event: FormEvent<HTMLInputElement>): void => {
+        const value: string = event.currentTarget.value;
+        setSearch(value)
+        onChange(value)
+    }
+    const clearSearch = (): void => {
+        setSearch("")
+        onChange("")
+    }
+
     return (
         <div className={styles.container+" "+utils.layout}>
             <FontAwesomeIcon className={styles.input_icon} icon={ faMagnifyingGlass } />
-            <input className={styles.input} type="search" placeholder="Search for a country..." />
+            <input className={styles.input} type="text" placeholder="Search for a country..." value={search} onChange={handleChange} />
+            {search !== "" && (
+                <div className={styles.icon_clear} onClick={clearSearch}>
+                    <FontAwesomeIcon className={styles.input_icon} icon={faXmark} />
+                </div>
+            )}
         </div>
     )
 }

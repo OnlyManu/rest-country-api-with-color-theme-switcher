@@ -12,10 +12,11 @@ interface Iresponse {
 }
 
 export type CountriesType = undefined | Array<Icountry>
+export type RegionType = "" | "africa" | "america" | "asia" | "europe" | "oceania"
 
 const formatToIregion = (obj: any): Icountry => {
     let region: Icountry = {
-        name: obj.name.official,
+        name: obj.name.common,
         population: obj.population.toLocaleString("en-US"),
         region: obj.region,
         capital: obj.capital,
@@ -31,7 +32,6 @@ export const getCountries = async () => {
                 return response.json()
             }
         })
-
         data = data.map((region: any) => formatToIregion(region))
 
         const respone: Iresponse = {

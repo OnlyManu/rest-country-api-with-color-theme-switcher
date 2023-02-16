@@ -1,9 +1,10 @@
 import Head from 'next/head'
-import { useReducer } from 'react'
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import { useReducer, useState } from 'react'
 import { useTheme } from '../lib/themecontext'
 import styles from '../styles/Home.module.css'
 
-import { getCountries, CountriesType } from '../lib/countries'
+import { getCountries, CountriesType, RegionType } from '../lib/countries'
 
 import Navbar from '../components/navbar/navbar'
 import InputSearch from '../components/input-search/input-search'
@@ -39,27 +40,41 @@ let initialState = {
 function reducer(state: typeof initialState, action: ActionType) {
   switch (action.type) {
     case "filter_by_name": {
-      const name_filter = action.payload
-      const countries = state.countries.filter((country: any) => {
-        const reg = new RegExp(`${name_filter}`, "i")
-        return reg.test(country.name)
+      const name_filter: string = action.payload
+      const region_filter: RegionType = state.region_filter as RegionType
+      
+      const countries = initialListCountries.filter((country: any) => {
+        const regName = new RegExp(`${name_filter}`, "i")
+        if (region_filter !== "") {
+          const regRegion = new RegExp(`${region_filter}`, "i")
+          return regRegion.test(country.region) && regName.test(country.name) 
+        }
+        return regName.test(country.name)
       })
 
       return {...state, name_filter, countries}
     }
     case "filter_by_region": {
-      const region_filter = action.payload
-      if (state.region_filter === region_filter) {
-        return state
-      }
+      const region_filter: RegionType = action.payload as RegionType
+      const name_filter: string = state.name_filter
 
       let countries
       if (region_filter === "") {
-        countries = initialListCountries
+        countries = [...initialListCountries]
+        if (name_filter !== "") {
+          countries = countries.filter((country: any) => {
+            const regName = new RegExp(`${name_filter}`, "i")
+            return regName.test(country.name)
+          })
+        }
       } else {
-        countries = state.countries.filter((country: any) => {
-          const reg = new RegExp(`${region_filter}`, "i")
-          return reg.test(country.region)
+        countries = initialListCountries.filter((country: any) => {
+          const regRegion = new RegExp(`${region_filter}`, "i")
+          if (name_filter !== "") {
+            const regName = new RegExp(`${name_filter}`, "i")
+            return regRegion.test(country.region) && regName.test(country.name) 
+          }
+          return regRegion.test(country.region)
         })
       }
 
@@ -71,23 +86,22 @@ function reducer(state: typeof initialState, action: ActionType) {
   }
 }
 
-export default function Home() {
-  const { theme } = useTheme()
+export default function Home({themeSelected}: InferGetServerSidePropsType<typeof getCountries>) {
+  const { theme, setTheme } = useTheme()
   const [state, dispatch] = useReducer(reducer, initialState)
+  const [loadingState, setLoaddingState] = useState<boolean>(true)
   
-  const fiterByRegion = (region: string): void => {
+  const filterByRegion = (region: RegionType): void => {
     dispatch({ type: "filter_by_region", payload: region })
-    if (state.name_filter !== "") {
-      filterByName(state.name_filter)
-    }
   }
 
   const filterByName = (name: string): void => {
-    if (name === "") {
-      dispatch({ type: "filter_by_region", payload: state.region_filter })
-    } else {
-      dispatch({ type: "filter_by_name", payload: name })
-    }
+    setLoaddingState(true)
+    dispatch({ type: "filter_by_name", payload: name })
+  }
+
+  const loadingComplete = (): void => {
+    setLoaddingState(false)
   }
   
   return (
@@ -103,14 +117,26 @@ export default function Home() {
       </header>
       <main className={styles.main}>
         <section className={styles.searchbar}>
-          <InputSearch />
-          <SelectRegion />
+          <InputSearch onChange={filterByName} initialSearch={state.name_filter} />
+          <SelectRegion onClick={filterByRegion} initialRegion={state.region_filter as RegionType} />
         </section>
         <section className={styles.list_countries}>
-          <GridCountries countries={state.countries as CountriesType} />
+          <GridCountries countries={state.countries as CountriesType} isLoading={loadingState} loadingComplete={loadingComplete} />
         </section>
       </main>
     </div>
   )
 }
 
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  let theme: string | undefined = "light"
+  if (Object.hasOwn(context.req.cookies, "theme")) {
+    theme = context.req.cookies.theme
+  }
+
+  return {
+    props: {
+      themeSelected: theme
+    }
+  }
+}

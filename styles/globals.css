@@ -28,16 +28,18 @@ body {
 }
 
 .light {
-  --var-bg-color-primary: hsl(0, 0%, 98%);;
+  --var-bg-color-primary: hsl(0, 0%, 98%);
   --var-bg-color-secondary: hsl(0, 0%, 100%);
   --var-text-color-primary: hsl(200, 15%, 8%);
   --var-text-color-secondary: hsl(0, 0%, 52%);
+  --var-selected-option-color: hsl(0, 0%, 96%);
 }
 .dark {
   --var-bg-color-primary: hsl(207, 26%, 17%);
   --var-bg-color-secondary: hsl(209, 23%, 22%);
   --var-text-color-primary: hsl(0, 0%, 100%);
   --var-text-color-secondary: hsl(0, 0%, 98%);
+  --var-selected-option-color: hsl(207, 26%, 15%);
 }
 a {
   color: inherit;
