@@ -19,3 +19,15 @@
     border: none;
     color: var(--var-text-color-primary);
 }
+
+@media screen and (min-width: 768px) {
+    .container {
+        padding: 3rem 2.5rem;
+    }
+    .title_app {
+        font-size: 1.7rem;
+    }
+    .btn_theme {
+        font-size: 1.6rem;
+    }    
+}

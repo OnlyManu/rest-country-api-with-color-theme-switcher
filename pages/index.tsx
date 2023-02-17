@@ -54,6 +54,7 @@ function reducer(state: typeof initialState, action: ActionType) {
 
       return {...state, name_filter, countries}
     }
+      
     case "filter_by_region": {
       const region_filter: RegionType = action.payload as RegionType
       const name_filter: string = state.name_filter
@@ -80,6 +81,7 @@ function reducer(state: typeof initialState, action: ActionType) {
 
       return {...state, region_filter, countries}
     }
+      
     default: {
       throw new Error()
     }
@@ -117,8 +119,8 @@ export default function Home({themeSelected}: InferGetServerSidePropsType<typeof
       </header>
       <main className={styles.main}>
         <section className={styles.searchbar}>
-          <InputSearch onChange={filterByName} initialSearch={state.name_filter} />
-          <SelectRegion onClick={filterByRegion} initialRegion={state.region_filter as RegionType} />
+          <InputSearch onChange={filterByName} initialValue={state.name_filter as string} />
+          <SelectRegion onClick={filterByRegion} initialValue={state.region_filter as RegionType} />
         </section>
         <section className={styles.list_countries}>
           <GridCountries countries={state.countries as CountriesType} isLoading={loadingState} loadingComplete={loadingComplete} />

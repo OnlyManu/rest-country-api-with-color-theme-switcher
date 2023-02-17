@@ -24,3 +24,13 @@
 .icon_clear {
     cursor: pointer;
 }
+
+@media screen and (min-width: 768px) {
+    .container {
+        font-size: 1.5rem;
+        height: 5rem;
+    }
+    .input {
+        font-size: 1.5rem;
+    }    
+}

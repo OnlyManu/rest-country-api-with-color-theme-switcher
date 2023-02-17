@@ -36,3 +36,16 @@
   width: 100%;
   height: 100%;
 }
+
+@media screen and (min-width: 768px) {
+  .main {
+    gap: none;
+  }
+  .searchbar {
+    padding: 4rem 2rem;
+    gap: 4rem;
+  }
+  .list_countries {
+    padding: 0 3.5rem;
+  }
+}

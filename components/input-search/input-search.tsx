@@ -20,7 +20,7 @@ export default function InputSearch({onChange, initialValue}: InputSearchProps) 
         setSearch("")
         onChange("")
     }
-
+    
     return (
         <div className={styles.container+" "+utils.layout}>
             <FontAwesomeIcon className={styles.input_icon} icon={ faMagnifyingGlass } />

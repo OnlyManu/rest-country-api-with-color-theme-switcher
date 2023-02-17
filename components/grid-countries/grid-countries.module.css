@@ -32,3 +32,11 @@
         transform: rotate(360deg);
     }
 }
+
+@media screen and (min-width: 768px) {
+    .container {
+        grid-template-columns: 1fr 1fr;
+        row-gap: 3rem;
+        column-gap: 2rem;
+    }
+}

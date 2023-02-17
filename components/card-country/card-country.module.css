@@ -42,3 +42,20 @@
 .value {
     font-weight: 300;
 }
+
+@media screen and (min-width: 768px) {
+    .container {
+        font-size: 1.5rem;
+    }
+    .flag_wrapper {
+        height: 27vw;
+    }
+    .about {
+        gap: 2rem;
+        padding: 2rem 2rem 0 2rem;
+        height: 17rem;
+    }
+    .country {
+        font-size: 1.6rem;
+    }    
+}
