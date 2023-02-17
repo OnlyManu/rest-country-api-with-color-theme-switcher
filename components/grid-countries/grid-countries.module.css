@@ -51,7 +51,7 @@
     }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1220px) {
     .container {
         grid-template-columns: repeat(4, 1fr);
     }
