@@ -12,6 +12,7 @@
 }
 .btn_theme {
     display: flex;
+    align-items: center;
     gap: 0.4rem;
     font-size: 0.9rem;
     font-weight: 300;
@@ -30,4 +31,17 @@
     .btn_theme {
         font-size: 1.6rem;
     }    
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        padding: 1.8rem 5vw;
+    }
+    .title_app {
+        font-size: 1.7rem;
+    }
+    .btn_theme {
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
 }

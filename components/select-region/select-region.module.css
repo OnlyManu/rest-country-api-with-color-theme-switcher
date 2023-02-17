@@ -3,6 +3,7 @@
     display: flex;
     width: 60%;
     height: 3.46rem;
+    cursor: pointer;
 }
 
 .input {
@@ -15,6 +16,7 @@
     color: var(--var-text-color-primary);
     font-size: 1rem;
     font-weight: 600;
+    cursor: pointer;
 }
 .input::placeholder {
     color: var(--var-text-color-primary);
@@ -68,8 +70,28 @@
         padding: 2rem 1rem;
     }
     .region {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
         padding: 0.6rem 2rem;
         border-radius: 1rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        width: 14rem;
+        height: 3.8rem;
+    }
+    .input {
+        font-size: 1rem;
+    }
+    .input_icon {
+        font-size: 1rem;
+    }
+    .list_regions {
+        padding: 1rem 1rem;
+    }
+    .region {
+        font-size: 1.1rem;
+        padding: 0.5rem 1rem;
     }
 }
