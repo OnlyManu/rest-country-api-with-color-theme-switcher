@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { useTheme } from "../../lib/themecontext"
 import { setThemePreference } from "../../lib/preferences"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -15,7 +16,7 @@ export default function Navbar() {
 
     return (
         <div className={styles.container}>
-            <strong className={styles.title_app}>Where in the world?</strong>
+            <Link href={"/"} className={styles.title_app}>Where in the world?</Link>
             <button className={styles.btn_theme} onClick={toggleTheme}>
                 <FontAwesomeIcon className={styles.btn_theme_icon} icon={theme === "light" ? light : dark} />
                 <span className={styles.btn_theme_text}>Dark Mode</span>

@@ -38,10 +38,16 @@
 @media screen and (min-width: 1024px) {
     .container {
         font-size: 1.1rem;
-        width: 34vw;
+        width: 38vw;
         height: 3.8rem;
     }
     .input {
         font-size: 1rem;
+    }
+}
+
+@media screen and (min-width: 1220px) {
+    .container {
+        width: 34vw;
     }
 }

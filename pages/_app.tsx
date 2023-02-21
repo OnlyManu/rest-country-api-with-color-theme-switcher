@@ -9,7 +9,8 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 
 export default function App({ Component, pageProps }: AppProps) {
-  const theme: ThemeType = pageProps.themeSelected as ThemeType
+  const propTheme: any = pageProps.themeSelected ? pageProps.themeSelected : "light"
+  const theme: ThemeType = propTheme as ThemeType
   useEffect(() => {
     if (!getThemePreference()) {
       setThemePreference("light")

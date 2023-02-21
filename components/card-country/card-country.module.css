@@ -48,7 +48,7 @@
         font-size: 1.5rem;
     }
     .flag_wrapper {
-        height: 27vw;
+        height: 25vw;
     }
     .about {
         gap: 2rem;
@@ -70,7 +70,7 @@
     .about {
         gap: 1.3rem;
         padding: 1.5rem 1.5rem 0 1.5rem;
-        height: 13rem;
+        height: 12.5rem;
     }
     .country {
         font-size: 1.3rem;
@@ -80,5 +80,8 @@
 @media screen and (min-width: 1220px) {
     .flag_wrapper {
         height: 10.5vw;
+    }
+    .about {
+        height: 12.5rem;
     }
 }

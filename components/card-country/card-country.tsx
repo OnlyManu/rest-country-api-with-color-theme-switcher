@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Icountry } from "../../lib/countries";
+import Link from "next/link";
 import styles from "./card-country.module.css"
 import utils from "../../styles/utils.module.css"
 
@@ -9,7 +10,7 @@ interface CardCountryProps {
 
 export default function CardCountry({ country }: CardCountryProps) {
     return (
-        <div className={styles.container + " " + utils.layout}>
+        <Link href={`/country/${country.name.toLowerCase()}`} className={styles.container + " " + utils.layout}>
             <div className={styles.flag_wrapper}>
                 <Image
                     className={styles.flag}
@@ -36,6 +37,6 @@ export default function CardCountry({ country }: CardCountryProps) {
                     </div>
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }

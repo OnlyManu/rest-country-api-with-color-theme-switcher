@@ -55,6 +55,15 @@
     flex-direction: row;
     justify-content: space-between;
     gap: none;
+    padding: 3rem 6vw;
+  }
+  .list_countries {
+    padding: 0 6vw;
+  }
+}
+
+@media screen and (min-width: 1220px) {
+  .searchbar {
     padding: 3rem 5vw;
   }
   .list_countries {
