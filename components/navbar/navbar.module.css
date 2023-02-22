@@ -36,10 +36,10 @@
 
 @media screen and (min-width: 1024px) {
     .container {
-        padding: 2rem 6vw;
+        padding: 1.9rem 6vw;
     }
     .title_app {
-        font-size: 1.8rem;
+        font-size: 1.9rem;
     }
     .btn_theme {
         font-size: 1.22rem;
@@ -49,6 +49,6 @@
 
 @media screen and (min-width: 1220px) {
     .container {
-        padding: 2rem 5vw;
+        padding: 1.9rem 5vw;
     }
 }
