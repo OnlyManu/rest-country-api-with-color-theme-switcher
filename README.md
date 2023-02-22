@@ -33,8 +33,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [https://www.frontendmentor.io/solutions/rest-country-api-yicXVL0aIf](https://www.frontendmentor.io/solutions/rest-country-api-yicXVL0aIf)
+- Live Site URL: [https://onlymanu-world-countries.vercel.app/](https://onlymanu-world-countries.vercel.app/)
 
 ## My process
 
