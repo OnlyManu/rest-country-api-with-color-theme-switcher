@@ -93,7 +93,7 @@ function reducer(state: typeof initialState, action: ActionType) {
 export default function Home({themeSelected}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { theme } = useTheme()
   const [state, dispatch] = useReducer(reducer, initialState)
-  const [loadingState, setLoaddingState] = useState<boolean>(true)
+  const [loadingState, setLoaddingState] = useState<boolean>(false)
   
   const filterByRegion = (region: RegionType): void => {
     dispatch({ type: "filter_by_region", payload: region })
