@@ -40,18 +40,24 @@ const formatToIcountry = (obj: any): Icountry => {
 }
 
 const formatBordersCca3ToName = async (cca3: string): Promise<string> => {
-    try {
-        let data = await fetch(`https://restcountries.com/v3.1/alpha/${cca3}`).then((response) => {
-            if (response.ok) {
-                return response.json()
-            }
-        })
+    let tryNumber: number = 2
+    let result: "sucess" | "error" = "error"
+    while (tryNumber > 0 && result === "error") {
+        try {
+            tryNumber -= 1
+            let data = await fetch(`https://restcountries.com/v3.1/alpha/${cca3}`).then((response) => {
+                if (response.ok) {
+                    return response.json()
+                }
+            })
 
-        return data[0].name.common as string
-    } catch (error) {
-        console.log(error)
-        return "Not found"
+            result = "sucess"
+            return data[0].name.common as string
+        } catch (error) {
+            console.log(error)
+        }    
     }
+    return "Not found"
 }
 
 const formatAllBordersCca3ToName = async (bordersCca3: string[]): Promise<string[]> => {

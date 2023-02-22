@@ -1,10 +1,13 @@
 .container {
     display: flex;
     flex-direction: column;
-    padding: 3rem 8vw;
-    gap: 3rem;
+    padding: 5vh 8vw;
+    gap: 5vh;
 }
-
+.container>span {
+    align-self: center;
+    justify-self: center;
+}
 .btn_back {
     display: flex;
     gap: 0.6rem;
@@ -16,7 +19,7 @@
 .layout_country {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 4vh;
 }
 .flag {
     width: 100%;
@@ -25,7 +28,7 @@
 .about_country {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2vh;
 }
 .country_name {
     font-weight: 700;
@@ -34,8 +37,8 @@
 .country_infos {
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
-    margin-bottom: 1rem;
+    gap: 4vh;
+    margin-bottom: 2vh;
 }
 .info_group {
     display: flex;
@@ -48,7 +51,7 @@
 }
 .name {
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: 0.94rem;
 }
 .value {
     font-size: 0.95rem;
@@ -71,4 +74,115 @@
     padding: 0.6rem 0.8rem;
     min-width: 6.5rem;
     font-size: 0.9rem;
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        padding: 5vh 8vw;
+    }
+    .btn_back {
+        font-size: 1.4rem;
+        padding: 0.6rem 0;
+        width: 11rem;
+    }
+    .flag {
+        height: 50vw;
+    }
+    .country_name {
+        font-size: 2.8rem;
+    }
+    .about_country {
+        gap: 3vh;
+    }
+    .country_infos {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        justify-content: space-between;
+        gap: none;
+        margin-bottom: 2vh;
+    }
+    .info_group:last-child {
+        justify-self: flex-end;
+    }
+    .info_group {
+        gap: 0.8rem;
+        width: fit-content;
+    }
+    .name {
+        font-size: 1.46rem;
+    }
+    .value {
+        font-size: 1.48rem;
+    }
+    .layout_borders {
+        gap: 1.6rem;
+    }
+    .borders_countries {
+        row-gap: 1.4rem;
+    }
+    .btn_border {
+        font-size: 1.3rem;
+        min-width: 7.5rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        padding: 8vh 6vw;
+        gap: 8vh;        
+    }
+    .btn_back {
+        font-size: 1.35vw;
+        padding: 0.6vw 0;
+        width: 10.5vw;
+    }
+    .layout_country {
+        display: grid;
+        grid-template-columns: 40vw 1fr;
+        align-items: center;
+        gap: 7vw;
+    }
+    .flag {
+        height: 28vw;
+    }
+    .country_infos {
+        margin-bottom: 3vh;
+    }
+    .country_name {
+        font-size: 2.34vw;
+    }
+    .info_group {
+        gap: 0.8rem;
+    }
+    .name {
+        font-size: 1.2vw;
+    }
+    .value {
+        font-size: 1.2vw;
+    }
+    .layout_borders {
+        display: grid;
+        grid-template-columns: 10.6vw 1fr;
+        gap: 0.6rem;
+    }
+    .layout_borders .name {
+        padding-top: 0.4vw;
+        width: 10.6vw;
+    }
+    .borders_countries {
+        column-gap: 0.5rem;
+        row-gap: 1.4rem;
+    }
+    .btn_border {
+        font-size: 1.2vw;
+        min-width: 7vw;
+        padding: 0.4vw 0.6vw;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-height: 600px) {
+    .container {
+        padding: 5vh 6vw;
+        gap: 5vh;        
+    }    
 }

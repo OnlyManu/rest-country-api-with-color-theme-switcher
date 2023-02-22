@@ -73,11 +73,19 @@ export default function GridCountry({ country }: IgridCountryProps) {
                         </div>
                     </div>
                     <div className={styles.layout_borders}>
-                        <span>Borders countries:</span>
+                        <span className={styles.name}>Borders countries:</span>
                         <div className={styles.borders_countries}>
-                            {country.borders.filter((name) => name !== "Not found").map((borderCountry, key) => (
-                                <Link key={key} href={`/country/${borderCountry.toLowerCase()}`} className={styles.btn_border+" "+utils.btn}>{ borderCountry }</Link>
-                            ))}
+                            {country.borders.map((borderCountry, key) => {
+                                if (borderCountry === "Not found") {
+                                    return (
+                                        <Link key={key} href={"/"} className={styles.btn_border + " " + utils.btn}>{"???"}</Link>
+                                    )
+                                } else {
+                                    return (
+                                        <Link key={key} href={`/country/${borderCountry.toLowerCase()}`} className={styles.btn_border + " " + utils.btn}>{borderCountry}</Link>
+                                    )
+                                }
+                            })}
                         </div>
                     </div>
 

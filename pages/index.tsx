@@ -9,7 +9,7 @@ import { getCountries, CountriesType, RegionType } from '../lib/countries'
 import Navbar from '../components/navbar/navbar'
 import InputSearch from '../components/input-search/input-search'
 import SelectRegion from '../components/select-region/select-region'
-import GridCountries from "../components/grid-countries/grid-countries"
+import GridCountries from '../components/grid-countries/grid-countries'
 
 type ActionType = { type: "filter_by_name", payload: string } | { type: "filter_by_region", payload: string }
 
@@ -45,10 +45,12 @@ function reducer(state: typeof initialState, action: ActionType) {
       
       const countries = initialListCountries.filter((country: any) => {
         const regName = new RegExp(`${name_filter}`, "i")
+      
         if (region_filter !== "") {
           const regRegion = new RegExp(`${region_filter}`, "i")
           return regRegion.test(country.region) && regName.test(country.name) 
         }
+        
         return regName.test(country.name)
       })
 
@@ -89,7 +91,7 @@ function reducer(state: typeof initialState, action: ActionType) {
 }
 
 export default function Home({themeSelected}: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const { theme, setTheme } = useTheme()
+  const { theme } = useTheme()
   const [state, dispatch] = useReducer(reducer, initialState)
   const [loadingState, setLoaddingState] = useState<boolean>(true)
   

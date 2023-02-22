@@ -2,7 +2,12 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: fit-content;
     overflow: hidden;
+    transition: .6s transform;
+}
+.container:hover {
+    transform: translateY(-0.6rem);
 }
 .flag_wrapper {
     width: 100%;
@@ -65,15 +70,15 @@
         font-size: 1rem;
     }
     .flag_wrapper {
-        height: 13vw;
+        height: 14vw;
     }
     .about {
-        gap: 1.3rem;
-        padding: 1.5rem 1.5rem 0 1.5rem;
+        gap: 1rem;
+        padding: 1rem 1.2rem 0 1.2rem;
         height: 12.5rem;
     }
     .country {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 }
 
@@ -83,5 +88,15 @@
     }
     .about {
         height: 12.5rem;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .country {
+        font-size: 1.3rem;
+    }
+    .about {
+        gap: 1.3rem;
+        padding: 1.5rem 1.5rem 0 1.5rem;       
     }
 }

@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 1.8rem 1rem;
+    padding: 1.8rem 4vw;
     background-color: var(--var-bg-color-secondary);
     box-shadow: 0px 2px 12px var(--var-shadow-color);
 }
@@ -39,10 +39,10 @@
         padding: 1.8rem 6vw;
     }
     .title_app {
-        font-size: 1.7rem;
+        font-size: 1.8rem;
     }
     .btn_theme {
-        font-size: 1.1rem;
+        font-size: 1.22rem;
         font-weight: 500;
     }
 }

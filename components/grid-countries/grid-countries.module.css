@@ -4,6 +4,7 @@
     grid-template-rows: 1fr;
     gap: 3rem;
     width: 100%;
+    min-height: 100%;
     padding-bottom: 2rem;
 }
 .loading {
@@ -19,7 +20,7 @@
     width: 4rem;
     height: 4rem;
     border: 4px solid transparent;
-    border-top-color: #999191;
+    border-top-color: var(--var-loading-color);
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -40,6 +41,11 @@
         column-gap: 2rem;
         padding-bottom: 3rem;
     }
+    .container>span {
+        align-self: center;
+        justify-self: center;
+        grid-column: 1/3;
+    }
 }
 
 @media screen and (min-width: 1024px) {
@@ -49,6 +55,11 @@
         column-gap: 6vw;
         padding-bottom: 6vw;
     }
+    .container>span {
+        align-self: center;
+        justify-self: center;
+        grid-column: 1/4;
+    }
 }
 
 @media screen and (min-width: 1220px) {
@@ -57,5 +68,10 @@
         row-gap: 5vw;
         column-gap: 5vw;
         padding-bottom: 5vw;
+    }
+    .container>span {
+        align-self: center;
+        justify-self: center;
+        grid-column: 1/5;
     }
 }
