@@ -24,16 +24,16 @@ export type RegionType = "" | "africa" | "america" | "asia" | "europe" | "oceani
 
 const formatToIcountry = (obj: any): Icountry => {
     let region: Icountry = {
-        name: obj.name.common,
-        nameNative: obj.name.nativeName,
-        population: obj.population.toLocaleString("en-US"),
-        region: obj.region,
-        subRegion: obj.subregion,
-        capital: obj.capital,
+        name: obj.name.common ? obj.name.common : "",
+        nameNative: obj.name.nativeName ? obj.name.nativeName : "",
+        population: obj.population ? obj.population.toLocaleString("en-US") : "",
+        region: obj.region ? obj.region : "",
+        subRegion: obj.subregion ? obj.subregion : "",
+        capital: obj.capital ? obj.capital : [],
         flags: obj.flags.png,
-        currencies: obj.currencies,
-        languages: obj.languages,
-        tld: obj.tld,
+        currencies: obj.currencies ? obj.currencies : [],
+        languages: obj.languages ? obj.languages : [],
+        tld: obj.tld ? obj.tld : [],
         borders: obj.borders ? obj.borders : []
     } 
     return region
@@ -78,6 +78,7 @@ export const getCountries = async () => {
             }
         })
         data = data.map((country: any) => formatToIcountry(country))
+        
 
         const respone: Iresponse = {
             status: "sucess",

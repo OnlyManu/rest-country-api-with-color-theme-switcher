@@ -4,7 +4,7 @@ import { useReducer, useState } from 'react'
 import { useTheme } from '../lib/themecontext'
 import styles from '../styles/Home.module.css'
 
-import { getCountries, CountriesType, RegionType } from '../lib/countries'
+import { getCountries, CountriesType, RegionType, Icountry } from '../lib/countries'
 
 import Navbar from '../components/navbar/navbar'
 import InputSearch from '../components/input-search/input-search'
@@ -13,87 +13,70 @@ import GridCountries from '../components/grid-countries/grid-countries'
 
 type ActionType = { type: "filter_by_name", payload: string } | { type: "filter_by_region", payload: string }
 
-let initialListCountries: any = [];
-let initialState = {
-  name_filter: "",
-  region_filter: "",
-  countries: []
-};
-  
-(async function () {
-  const response = await getCountries();
-  
-  if (response.status == "sucess") {
-    initialListCountries = response.data
-    initialState = {
-      name_filter: "",
-      region_filter: "",
-      countries: initialListCountries 
-    }
-  } else {
-    console.log(response.message)  
-  }
-})()
 
-
-
-function reducer(state: typeof initialState, action: ActionType) {
-  switch (action.type) {
-    case "filter_by_name": {
-      const name_filter: string = action.payload
-      const region_filter: RegionType = state.region_filter as RegionType
-      
-      const countries = initialListCountries.filter((country: any) => {
-        const regName = new RegExp(`${name_filter}`, "i")
-      
-        if (region_filter !== "") {
-          const regRegion = new RegExp(`${region_filter}`, "i")
-          return regRegion.test(country.region) && regName.test(country.name) 
-        }
+export default function Home({ themeSelected, initialCountries }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  function reducer(state: typeof initialState, action: ActionType) {
+    switch (action.type) {
+      case "filter_by_name": {
+        const name_filter: string = action.payload
+        const region_filter: RegionType = state.region_filter as RegionType
         
-        return regName.test(country.name)
-      })
-
-      return {...state, name_filter, countries}
-    }
-      
-    case "filter_by_region": {
-      const region_filter: RegionType = action.payload as RegionType
-      const name_filter: string = state.name_filter
-
-      let countries
-      if (region_filter === "") {
-        countries = [...initialListCountries]
-        if (name_filter !== "") {
-          countries = countries.filter((country: any) => {
-            const regName = new RegExp(`${name_filter}`, "i")
-            return regName.test(country.name)
-          })
-        }
-      } else {
-        countries = initialListCountries.filter((country: any) => {
-          const regRegion = new RegExp(`${region_filter}`, "i")
-          if (name_filter !== "") {
-            const regName = new RegExp(`${name_filter}`, "i")
+        const countries = initialCountries.filter((country: any) => {
+          const regName = new RegExp(`${name_filter}`, "i")
+        
+          if (region_filter !== "") {
+            const regRegion = new RegExp(`${region_filter}`, "i")
             return regRegion.test(country.region) && regName.test(country.name) 
           }
-          return regRegion.test(country.region)
+          
+          return regName.test(country.name)
         })
-      }
 
-      return {...state, region_filter, countries}
-    }
-      
-    default: {
-      throw new Error()
+        return {...state, name_filter, countries}
+      }
+        
+      case "filter_by_region": {
+        const region_filter: RegionType = action.payload as RegionType
+        const name_filter: string = state.name_filter
+
+        let countries
+        if (region_filter === "") {
+          countries = [...initialCountries]
+          if (name_filter !== "") {
+            countries = countries.filter((country: any) => {
+              const regName = new RegExp(`${name_filter}`, "i")
+              return regName.test(country.name)
+            })
+          }
+        } else {
+          countries = initialCountries.filter((country: any) => {
+            const regRegion = new RegExp(`${region_filter}`, "i")
+            if (name_filter !== "") {
+              const regName = new RegExp(`${name_filter}`, "i")
+              return regRegion.test(country.region) && regName.test(country.name) 
+            }
+            return regRegion.test(country.region)
+          })
+        }
+
+        return {...state, region_filter, countries}
+      }
+        
+      default: {
+        throw new Error()
+      }
     }
   }
-}
 
-export default function Home({themeSelected}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  let initialState = {
+    name_filter: "",
+    region_filter: "",
+    countries: initialCountries
+  };
+
   const { theme } = useTheme()
   const [state, dispatch] = useReducer(reducer, initialState)
-  const [loadingState, setLoaddingState] = useState<boolean>(false)
+  const [loadingState, setLoaddingState] = useState<boolean>(true)
   
   const filterByRegion = (region: RegionType): void => {
     dispatch({ type: "filter_by_region", payload: region })
@@ -138,9 +121,16 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     theme = context.req.cookies.theme
   }
 
+  let initialCountries: any = []
+  const response = await getCountries()
+  if (response.status === "sucess") {
+    initialCountries = response.data
+  }
+
   return {
     props: {
-      themeSelected: theme
+      themeSelected: theme,
+      initialCountries
     }
   }
 }
