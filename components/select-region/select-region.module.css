@@ -15,12 +15,12 @@
     padding: 0 2rem;
     color: var(--var-text-color-primary);
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
 }
 .input::placeholder {
     color: var(--var-text-color-primary);
-    font-weight: 600;
+    font-weight: 500;
 }
 .input_icon {
     position: absolute;
@@ -46,7 +46,7 @@
 .region {
     cursor: pointer;
     color: var(--var-text-color-primary);
-    font-weight: 600;
+    font-weight: 500;
     font-size: 1rem;
     padding: 0.4rem 1.5rem;
     border-radius: 0.8rem;
