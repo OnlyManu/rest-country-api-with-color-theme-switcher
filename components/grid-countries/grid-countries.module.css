@@ -52,8 +52,8 @@
     .container {
         grid-template-columns: repeat(3, 1fr);
         row-gap: 6vw;
-        column-gap: 6vw;
-        padding-bottom: 6vw;
+        column-gap: 5.5vw;
+        padding-bottom: 5.5vw;
     }
     .container>span {
         align-self: center;
@@ -65,9 +65,9 @@
 @media screen and (min-width: 1220px) {
     .container {
         grid-template-columns: repeat(4, 1fr);
-        row-gap: 5vw;
+        row-gap: 4.5vw;
         column-gap: 5vw;
-        padding-bottom: 5vw;
+        padding-bottom: 4.5vw;
     }
     .container>span {
         align-self: center;

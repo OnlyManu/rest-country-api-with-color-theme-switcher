@@ -20,7 +20,7 @@
 }
 .input::placeholder {
     color: var(--var-text-color-primary);
-    font-weight: 500;
+    font-weight: 600;
 }
 .input_icon {
     position: absolute;

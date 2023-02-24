@@ -98,7 +98,7 @@ export const getCountries = async () => {
 
 export const getCountry = async (name: string) => {
     try {
-        let rawData: Array<any> = await fetch(`https://restcountries.com/v3.1/name/${name}`).then((response) => {
+        let rawData: Array<any> = await fetch(`https://restcountries.com/v3.1/name/${name}?fullText=true`).then((response) => {
             if (response.ok) {
                 return response.json()
             }

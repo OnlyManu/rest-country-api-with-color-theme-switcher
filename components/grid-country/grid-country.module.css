@@ -140,7 +140,7 @@
         display: grid;
         grid-template-columns: 40vw 1fr;
         align-items: center;
-        gap: 7vw;
+        gap: 5vw;
     }
     .flag {
         height: 28vw;
