@@ -14,7 +14,7 @@ import GridCountry from '../../components/grid-country/grid-country';
 export default function Country({themeSelected, country}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { theme } = useTheme()
 
-  return (
+  return(
     <div className={styles.container + " " + theme}>
       <Head>
         <title>Frontend Mentor | Rest Countries API</title>
